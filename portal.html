@@ -22,6 +22,7 @@
       window.location.href = "login.html";
     } else {
       openFolder('');
+      showDriveLinks();
     }
   }
 
@@ -58,6 +59,7 @@
           .createSignedUrl(path + item.name, 60)
           .then(res => {
             a.href = res.data.signedUrl;
+            a.target = '_blank';
           });
       }
 
@@ -70,6 +72,24 @@
     const parts = currentPath.split('/').filter(p => p);
     parts.pop();
     openFolder(parts.length ? parts.join('/') + '/' : '');
+  }
+
+  async function showDriveLinks() {
+    const { data, error } = await client
+      .from('links')
+      .select('*');
+
+    const ul = document.getElementById('files');
+
+    data.forEach(link => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.innerText = '🔗 ' + link.title;
+      a.href = link.url;
+      a.target = '_blank';
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
   }
 
   async function logout() {

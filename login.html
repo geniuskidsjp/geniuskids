@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Login - Genius Kids</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <h2>Student Login</h2>
+
+  <input type="email" id="email" placeholder="Email"><br><br>
+  <input type="password" id="password" placeholder="Password"><br><br>
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+
+  <script>
+    const supabaseUrl = "PASTE_PROJECT_URL_HERE";
+    const supabaseKey = "PASTE_PUBLISHABLE_KEY_HERE";
+
+    const client = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { error } = await client.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+        document.getElementById('msg').innerText = error.message;
+      } else {
+        window.location.href = "portal.html";
+      }
+    }
+  </script>
+</body>
+</html>

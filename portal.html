@@ -9,51 +9,60 @@
   <button onclick="logout()">Logout</button>
   <ul id="files"></ul>
 
-  <script>
-    const supabaseUrl = "https://ntfkpwfrwprrgoxidoub.supabase.co";
-    const supabaseKey = "sb_publishable_J3QyzC6-gBXD9VfYRQhMtA_EZm4MYBc";
+<script>
+  const supabaseUrl = "PASTE_PROJECT_URL_HERE";
+  const supabaseKey = "PASTE_PUBLISHABLE_KEY_HERE";
+  const client = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    const client = supabase.createClient(supabaseUrl, supabaseKey);
+  async function checkUser() {
+    const { data: { user } } = await client.auth.getUser();
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      listAllFiles('');
+    }
+  }
 
-    async function checkUser() {
-      const { data: { user } } = await client.auth.getUser();
-      if (!user) {
-        window.location.href = "login.html";
+  async function listAllFiles(path) {
+    const { data, error } = await client
+      .storage
+      .from('resources')
+      .list(path, { limit: 100 });
+
+    for (const item of data) {
+      if (item.id === null) {
+        // It is a folder → go inside
+        await listAllFiles(path + item.name + '/');
       } else {
-        listFiles();
+        // It is a file → show it
+        addFileToList(path + item.name);
       }
     }
+  }
 
-    async function listFiles() {
-      const { data, error } = await client
-        .storage
-        .from('resources')
-        .list('');
+  function addFileToList(filepath) {
+    const ul = document.getElementById('files');
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.innerText = filepath;
 
-      const ul = document.getElementById('files');
-      data.forEach(file => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.innerText = file.name;
-
-        client.storage
-          .from('resources')
-          .createSignedUrl(file.name, 60)
-          .then(res => {
-            a.href = res.data.signedUrl;
-          });
-
-        li.appendChild(a);
-        ul.appendChild(li);
+    client.storage
+      .from('resources')
+      .createSignedUrl(filepath, 60)
+      .then(res => {
+        a.href = res.data.signedUrl;
       });
-    }
 
-    async function logout() {
-      await client.auth.signOut();
-      window.location.href = "login.html";
-    }
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
 
-    checkUser();
-  </script>
+  async function logout() {
+    await client.auth.signOut();
+    window.location.href = "login.html";
+  }
+
+  checkUser();
+</script>
 </body>
 </html>

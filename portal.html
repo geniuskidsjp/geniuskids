@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Resources - Genius Kids</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <h2>Student Resources</h2>
+  <button onclick="logout()">Logout</button>
+  <ul id="files"></ul>
+
+  <script>
+    const supabaseUrl = "PASTE_PROJECT_URL_HERE";
+    const supabaseKey = "PASTE_PUBLISHABLE_KEY_HERE";
+
+    const client = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function checkUser() {
+      const { data: { user } } = await client.auth.getUser();
+      if (!user) {
+        window.location.href = "login.html";
+      } else {
+        listFiles();
+      }
+    }
+
+    async function listFiles() {
+      const { data, error } = await client
+        .storage
+        .from('resources')
+        .list('');
+
+      const ul = document.getElementById('files');
+      data.forEach(file => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.innerText = file.name;
+
+        client.storage
+          .from('resources')
+          .createSignedUrl(file.name, 60)
+          .then(res => {
+            a.href = res.data.signedUrl;
+          });
+
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+    }
+
+    async function logout() {
+      await client.auth.signOut();
+      window.location.href = "login.html";
+    }
+
+    checkUser();
+  </script>
+</body>
+</html>

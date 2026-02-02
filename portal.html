@@ -17,29 +17,42 @@
 
   let currentPath = '';
 
-  // 🔒 Check if user email is approved
-  async function checkApproval(userEmail) {
+  // ✅ Main gatekeeper (correct way)
+  async function checkUser() {
+    const { data: { session } } = await client.auth.getSession();
+
+    if (!session) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    const userEmail = session.user.email;
+
     const { data } = await client
       .from('approved_users')
       .select('email')
       .eq('email', userEmail);
 
-    return data.length > 0;
-  }
-
-  // 🔐 Main gatekeeper
-  async function checkUser() {
-    const { data: { user } } = await client.auth.getUser();
-
-    if (!user) {
-      window.location.href = "login.html";
-      return;
-    }
-
-    const approved = await checkApproval(user.email);
-
-    if (!approved) {
+    if (!data || data.length === 0) {
       document.body.innerHTML = `
         <div style="text-align:center;margin-top:100px;font-family:Arial">
           <h2>Account Pending Approval</h2>
-          <p>Your signup is
+          <p>Please wait for tutor approval.</p>
+        </div>
+      `;
+      return;
+    }
+
+    openFolder('');
+    showDriveLinks();
+  }
+
+  async function openFolder(path) {
+    currentPath = path;
+    const ul = document.getElementById('files');
+    ul.innerHTML = '';
+
+    if (path !== '') {
+      const back = document.createElement('li');
+      back.innerHTML = `<a href="#" onclick="goBack()">⬅ Back</a>`;
+      ul.appendChild(back);

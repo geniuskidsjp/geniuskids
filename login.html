@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Login - Genius Kids</title>
+  <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+
+<body>
+  <h2>Student Login</h2>
+
+  <h3>Email Login</h3>
+  <input type="email" id="email" placeholder="Email"><br><br>
+  <input type="password" id="password" placeholder="Password"><br><br>
+  <button onclick="login()">Login with Email</button>
+
+  <br><br>
+  <hr>
+  <h3>Or</h3>
+  <button onclick="googleLogin()">Sign in with Google</button>
+
+  <p id="msg"></p>
+
+<script>
+  const supabaseUrl = "https://ntfkpwfrwprrgoxidoub.supabase.co";
+  const supabaseKey = "sb_publishable_J3QyzC6-gBXD9VfYRQhMtA_EZm4MYBc";
+
+  const client = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  async function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const { error } = await client.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      document.getElementById('msg').innerText = error.message;
+    } else {
+      window.location.href = "portal.html";
+    }
+  }
+
+  async function googleLogin() {
+    await client.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: "https://geniuskids.jp/portal.html"
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

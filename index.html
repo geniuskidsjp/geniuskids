@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeniusKids | Learn English for Kids in Japan</title>
+  <title>GeniusKids | English Learning for Kids in Japan</title>
 
-  <!-- MAIN CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -16,15 +18,34 @@
   <div class="logo">Genius<span>Kids</span></div>
 
   <nav class="nav-links">
-    <a href="#">Subjects</a>
-    <a href="#">Grades</a>
-    <a href="#">Worksheets</a>
-    <a href="#">Games</a>
+    <div class="nav-item">
+      Subjects
+      <div class="mega-menu">
+        <a href="resources.html?subject=alphabet">Alphabet</a>
+        <a href="resources.html?subject=phonics">Phonics</a>
+        <a href="resources.html?subject=grammar">Grammar</a>
+        <a href="resources.html?subject=vocabulary">Vocabulary</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      Grades
+      <div class="mega-menu">
+        <a href="resources.html?grade=prek">Pre-K</a>
+        <a href="resources.html?grade=k">Kindergarten</a>
+        <a href="resources.html?grade=1">Grade 1</a>
+        <a href="resources.html?grade=2">Grade 2</a>
+        <a href="resources.html?grade=3">Grade 3</a>
+      </div>
+    </div>
+
+    <a href="resources.html?type=worksheet">Worksheets</a>
+    <a href="resources.html?type=game">Games</a>
   </nav>
 
   <div class="auth-buttons">
-    <a href="#" class="btn-outline">Log In</a>
-    <a href="#" class="btn-primary">Sign Up</a>
+    <a href="login.html" class="btn-outline">Log In</a>
+    <a href="login.html" class="btn-primary">Sign Up</a>
   </div>
 </header>
 
@@ -38,13 +59,15 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="#" class="btn-primary">Explore Resources</a>
-      <a href="#" class="btn-outline">Browse by Grade</a>
+      <a href="resources.html" class="btn-primary">Explore Resources</a>
+      <a href="resources.html?view=grades" class="btn-outline">Browse by Grade</a>
     </div>
   </div>
 
-  <div class="hero-placeholder">
-    Illustration Area
+  <div class="hero-image">
+    <div class="hero-placeholder">
+      Illustration Area
+    </div>
   </div>
 </section>
 
@@ -56,25 +79,25 @@
     <div class="path-card">
       <h3>Alphabet & Phonics</h3>
       <p>Build strong reading foundations.</p>
-      <a href="#">View Worksheets</a>
+      <a href="resources.html?subject=alphabet">View Worksheets</a>
     </div>
 
     <div class="path-card">
       <h3>Handwriting & Tracing</h3>
       <p>Develop writing and fine motor skills.</p>
-      <a href="#">Start Tracing</a>
+      <a href="resources.html?subject=tracing">Start Tracing</a>
     </div>
 
     <div class="path-card">
       <h3>Grammar & Vocabulary</h3>
       <p>Step-by-step English structure.</p>
-      <a href="#">Learn More</a>
+      <a href="resources.html?subject=grammar">Learn More</a>
     </div>
 
     <div class="path-card">
       <h3>Games & Fun Practice</h3>
       <p>Play, practice, and remember.</p>
-      <a href="#">Play Games</a>
+      <a href="resources.html?type=game">Play Games</a>
     </div>
   </div>
 </section>
@@ -84,14 +107,14 @@
   <h2>Choose a Grade</h2>
 
   <div class="grade-grid">
-    <a href="#" class="grade">Pre-K</a>
-    <a href="#" class="grade">K</a>
-    <a href="#" class="grade">1st</a>
-    <a href="#" class="grade">2nd</a>
-    <a href="#" class="grade">3rd</a>
-    <a href="#" class="grade">4th</a>
-    <a href="#" class="grade">5th</a>
-    <a href="#" class="grade">6th</a>
+    <a href="resources.html?grade=prek" class="grade">Pre-K</a>
+    <a href="resources.html?grade=k" class="grade">K</a>
+    <a href="resources.html?grade=1" class="grade">1st</a>
+    <a href="resources.html?grade=2" class="grade">2nd</a>
+    <a href="resources.html?grade=3" class="grade">3rd</a>
+    <a href="resources.html?grade=4" class="grade">4th</a>
+    <a href="resources.html?grade=5" class="grade">5th</a>
+    <a href="resources.html?grade=6" class="grade">6th</a>
   </div>
 </section>
 

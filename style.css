@@ -1,0 +1,16 @@
+/* FORCE PROOF */
+body {
+  background: lime !important;
+}
+
+#proof {
+  margin: 100px auto;
+  width: 420px;
+  padding: 40px;
+  background: yellow;
+  color: black;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  border: 10px solid red;
+}

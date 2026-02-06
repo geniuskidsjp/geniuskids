@@ -1,14 +1,15 @@
-/* ================= RESET / NORMALIZE ================= */
-html, body {
+/* ================= RESET ================= */
+* {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', Arial, sans-serif;
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #222;
+  line-height: 1.5;
 }
 
 a {
@@ -16,97 +17,41 @@ a {
   color: inherit;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* ================= GLOBAL ================= */
-body {
-  background-color: #ffffff;
-  color: #222222;
-  line-height: 1.5;
-}
-
 /* ================= NAVBAR ================= */
 .navbar {
-  width: 100%;
-  background-color: #000000;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 40px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  padding: 16px 32px;
 }
 
 .logo {
   font-size: 22px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .logo span {
   color: #ffd200;
 }
 
-.nav-links {
-  display: flex;
-  gap: 28px;
-  align-items: center;
+.nav-links a {
+  margin: 0 14px;
+  color: #fff;
 }
 
-.nav-links a,
-.nav-item {
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 15px;
+.auth-buttons a {
+  margin-left: 10px;
 }
 
-/* ================= DROPDOWN ================= */
-.nav-item {
-  position: relative;
-}
-
-.mega-menu {
-  display: none;
-  position: absolute;
-  top: 36px;
-  left: 0;
-  background: #ffffff;
-  color: #000000;
-  padding: 16px 18px;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-  min-width: 200px;
-}
-
-.mega-menu a {
-  display: block;
-  padding: 8px 0;
-  color: #000000;
-  font-size: 14px;
-}
-
-.nav-item:hover .mega-menu {
-  display: block;
-}
-
-/* ================= AUTH BUTTONS ================= */
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-}
-
+/* ================= BUTTONS ================= */
 .btn-primary {
-  background-color: #ffd200;
-  color: #000000;
+  background: #ffd200;
+  color: #000;
   padding: 10px 18px;
   border-radius: 24px;
-  font-weight: 600;
-  display: inline-block;
+  font-weight: bold;
 }
 
 .btn-outline {
@@ -114,17 +59,15 @@ body {
   color: #ffd200;
   padding: 8px 16px;
   border-radius: 24px;
-  display: inline-block;
 }
 
 /* ================= HERO ================= */
 .hero {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 80px 60px;
-  background-color: #f6f7f9;
+  justify-content: space-between;
+  padding: 80px 40px;
+  background: #f6f7f9;
 }
 
 .hero-content {
@@ -132,8 +75,7 @@ body {
 }
 
 .hero-content h1 {
-  font-size: 42px;
-  font-weight: 600;
+  font-size: 40px;
   margin-bottom: 16px;
 }
 
@@ -142,32 +84,26 @@ body {
   margin-bottom: 24px;
 }
 
-.hero-buttons {
-  display: flex;
-  gap: 14px;
-}
-
-.hero-image {
-  flex-shrink: 0;
+.hero-buttons a {
+  margin-right: 12px;
 }
 
 .hero-placeholder {
   width: 420px;
   height: 260px;
-  background-color: #dddddd;
+  background: #dddddd;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #777777;
-  font-size: 14px;
+  color: #666;
 }
 
 /* ================= LEARNING PATHS ================= */
 .paths {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 80px 60px;
+  background: #000;
+  color: #fff;
+  padding: 80px 40px;
 }
 
 .paths h2 {
@@ -182,7 +118,7 @@ body {
 }
 
 .path-card {
-  background-color: #111111;
+  background: #111;
   padding: 24px;
   border-radius: 16px;
 }
@@ -191,20 +127,15 @@ body {
   margin-bottom: 10px;
 }
 
-.path-card p {
-  font-size: 14px;
-}
-
 .path-card a {
   display: inline-block;
   margin-top: 12px;
   color: #ffd200;
-  font-weight: 500;
 }
 
 /* ================= GRADES ================= */
 .grades {
-  padding: 80px 60px;
+  padding: 80px 40px;
 }
 
 .grades h2 {
@@ -219,7 +150,7 @@ body {
 }
 
 .grade {
-  background-color: #f2f2f2;
+  background: #f2f2f2;
   padding: 20px;
   text-align: center;
   border-radius: 16px;
@@ -228,8 +159,8 @@ body {
 
 /* ================= FEATURED ================= */
 .featured {
-  padding: 80px 60px;
-  background-color: #f9fafb;
+  padding: 80px 40px;
+  background: #f9fafb;
 }
 
 .featured h2 {
@@ -244,49 +175,34 @@ body {
 }
 
 .resource-card {
-  background-color: #ffffff;
+  background: #fff;
   padding: 24px;
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
 .badge {
-  display: inline-block;
-  background-color: #ffd200;
+  background: #ffd200;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 12px;
+  display: inline-block;
   margin-bottom: 10px;
 }
 
 /* ================= FOOTER ================= */
 footer {
-  background-color: #000000;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
   text-align: center;
   padding: 20px;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE ================= */
 @media (max-width: 900px) {
-
-  .navbar {
-    padding: 14px 20px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 60px 20px;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-    flex-wrap: wrap;
   }
 
   .hero-placeholder {
@@ -294,13 +210,11 @@ footer {
     margin-top: 30px;
   }
 
-  .grade-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .nav-links {
+    display: none;
   }
 
-  .paths,
-  .grades,
-  .featured {
-    padding: 60px 20px;
+  .grade-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

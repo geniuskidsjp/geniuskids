@@ -1,33 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CSS DIAGNOSTIC</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeniusKids | Learn English for Kids in Japan</title>
 
-  <!-- Inline CSS (bypasses all file issues) -->
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-    .box {
-      margin: 100px auto;
-      padding: 40px;
-      width: 320px;
-      background: yellow;
-      color: black;
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
-  </style>
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <div class="box">
-    INLINE CSS WORKS
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="logo">Genius<span>Kids</span></div>
+
+  <nav class="nav-links">
+    <a href="#">Subjects</a>
+    <a href="#">Grades</a>
+    <a href="#">Worksheets</a>
+    <a href="#">Games</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <a href="#" class="btn-outline">Log In</a>
+    <a href="#" class="btn-primary">Sign Up</a>
   </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Learn English with Confidence</h1>
+    <p>
+      Structured English learning for kids in Japan<br>
+      Ages 4–12 · EIKEN-aligned
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">Explore Resources</a>
+      <a href="#" class="btn-outline">Browse by Grade</a>
+    </div>
+  </div>
+
+  <div class="hero-placeholder">
+    Illustration Area
+  </div>
+</section>
+
+<!-- ================= LEARNING PATHS ================= -->
+<section class="paths">
+  <h2>Explore Learning Paths</h2>
+
+  <div class="path-grid">
+    <div class="path-card">
+      <h3>Alphabet & Phonics</h3>
+      <p>Build strong reading foundations.</p>
+      <a href="#">View Worksheets</a>
+    </div>
+
+    <div class="path-card">
+      <h3>Handwriting & Tracing</h3>
+      <p>Develop writing and fine motor skills.</p>
+      <a href="#">Start Tracing</a>
+    </div>
+
+    <div class="path-card">
+      <h3>Grammar & Vocabulary</h3>
+      <p>Step-by-step English structure.</p>
+      <a href="#">Learn More</a>
+    </div>
+
+    <div class="path-card">
+      <h3>Games & Fun Practice</h3>
+      <p>Play, practice, and remember.</p>
+      <a href="#">Play Games</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GRADES ================= -->
+<section class="grades">
+  <h2>Choose a Grade</h2>
+
+  <div class="grade-grid">
+    <a href="#" class="grade">Pre-K</a>
+    <a href="#" class="grade">K</a>
+    <a href="#" class="grade">1st</a>
+    <a href="#" class="grade">2nd</a>
+    <a href="#" class="grade">3rd</a>
+    <a href="#" class="grade">4th</a>
+    <a href="#" class="grade">5th</a>
+    <a href="#" class="grade">6th</a>
+  </div>
+</section>
+
+<!-- ================= FEATURED ================= -->
+<section class="featured">
+  <h2>Popular Resources</h2>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <span class="badge">Worksheet</span>
+      <h4>Alphabet Tracing A–Z</h4>
+    </div>
+
+    <div class="resource-card">
+      <span class="badge">Game</span>
+      <h4>Sight Words Game</h4>
+    </div>
+
+    <div class="resource-card">
+      <span class="badge">Worksheet</span>
+      <h4>Basic Phonics Practice</h4>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2026 GeniusKids.jp · All rights reserved</p>
+</footer>
 
 </body>
 </html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EXTERNAL CSS TEST</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="box">
+  EXTERNAL CSS IS WORKING
+</div>
+
+</body>
+</html>

@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>EXTERNAL CSS TEST</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+body {
+  background: purple;
+}
 
-<div class="box">
-  EXTERNAL CSS IS WORKING
-</div>
-
-</body>
-</html>
+.test {
+  margin: 100px auto;
+  width: 420px;
+  padding: 40px;
+  background: yellow;
+  color: black;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  border: 8px solid red;
+}

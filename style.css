@@ -181,17 +181,50 @@ footer {
 
 /* MOBILE */
 @media (max-width: 900px) {
+
+  /* ===== NAVBAR MOBILE FIX ===== */
+  .navbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .logo-link {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .nav-links {
+    display: none; /* hide main menu on mobile */
+  }
+
+  .lang-switch {
+    order: 2;
+    font-size: 14px;
+  }
+
+  .auth-buttons {
+    order: 3;
+  }
+
+  .auth-buttons a {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* ===== HERO ===== */
   .hero {
     flex-direction: column;
     text-align: center;
+    padding: 48px 16px;
   }
+
   .hero-box {
     width: 260px;
     margin-top: 24px;
   }
-  .nav-links {
-    display: none;
-  }
+
+  /* ===== GRADES ===== */
   .grade-grid {
     grid-template-columns: repeat(2, 1fr);
   }

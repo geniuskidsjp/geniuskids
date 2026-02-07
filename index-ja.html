@@ -10,7 +10,7 @@
   <link rel="alternate" hreflang="en" href="https://geniuskids.jp/">
   <link rel="alternate" hreflang="x-default" href="https://geniuskids.jp/">
 
-  <!-- Fonts -->
+  <!-- Fonts: English + Japanese -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
@@ -27,11 +27,17 @@
     <span class="logo-text">Genius<span>Kids</span></span>
   </a>
 
-  <nav class="nav-links">
-    <a href="#">教科</a>
-    <a href="#">学年</a>
-    <a href="#">ワークシート</a>
-    <a href="#">ゲーム</a>
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">
+    ☰
+  </button>
+
+  <!-- Main Navigation -->
+  <nav class="nav-links" id="mobileMenu">
+    <a href="#">📘 教科</a>
+    <a href="#">🎒 学年</a>
+    <a href="#">✏️ ワークシート</a>
+    <a href="#">🎮 ゲーム</a>
   </nav>
 
   <div class="lang-switch">
@@ -60,8 +66,8 @@
   </div>
 
   <div class="hero-box">
-  <img src="teacher.png" alt="English Teacher" class="teacher-img">
-</div>
+    <img src="teacher.png" alt="英語の先生" class="teacher-img">
+  </div>
 </section>
 
 <section class="paths">
@@ -112,11 +118,36 @@
   © 2026 GeniusKids.jp · All rights reserved
 </footer>
 
+<!-- ================= SCRIPTS ================= -->
+
+<!-- Hamburger menu logic -->
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.querySelector(".hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("active");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.querySelector(".hamburger");
+  const links = document.querySelectorAll("#mobileMenu a");
+
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("open");
+      btn.classList.remove("active");
+    });
+  });
+});
+</script>
+
+<!-- Language auto-detect (first visit only) -->
 <script>
 (function () {
-  if (!localStorage.getItem("langSelected")) {
-    localStorage.setItem("langSelected", "ja");
-  }
+  if (localStorage.getItem("langSelected")) return;
+  localStorage.setItem("langSelected", "ja");
 })();
 </script>
 

@@ -146,57 +146,118 @@
   </div>
 </div>
 
-<!-- SUPABASE -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= SUPABASE CLIENT ================= -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-const supabaseClient = window.supabase.createClient(
-  "https://njoqrdhstwhiwyjbwyoo.supabase.co",
-  "YOUR_PUBLIC_ANON_KEY"
-);
 
+<script>
+  const supabaseUrl = "https://njoqrdhstwhiwyjbwyoo.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qb3FyZGhzdHdoaXd5amJ3eW9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTM1OTksImV4cCI6MjA4NjAyOTU5OX0.NGX5W85BqEumRHjbuEmwdlKb51HqJW-XQf-5F-KSAcQ";
+
+  const supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+  );
+</script>
+
+<script>
 function openLoginModal() {
   document.getElementById("loginModal").style.display = "flex";
 }
+
 function closeLoginModal() {
   document.getElementById("loginModal").style.display = "none";
 }
 
 async function loginUser() {
-  const username = loginUsername.value.trim();
-  const password = loginPassword.value;
-  loginError.textContent = "";
+  const username = document.getElementById("loginUsername").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const errorBox = document.getElementById("loginError");
+
+  errorBox.textContent = "";
 
   if (!username || !password) {
-    loginError.textContent = "ユーザー名とパスワードを入力してください。";
+    errorBox.textContent = "ユーザー名とパスワードを入力してください。";
     return;
   }
 
+  /* Convert username → internal email */
   const email = `${username}@geniuskids.local`;
-  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
 
   if (error) {
-    loginError.textContent = "ユーザー名またはパスワードが正しくありません。";
+    errorBox.textContent = "ユーザー名またはパスワードが正しくありません。";
     return;
   }
 
+  closeLoginModal();
   window.location.href = "resources.html";
 }
+</script>
 
+<!-- Hamburger menu logic -->
+<script>
 function toggleMenu() {
   const menu = document.getElementById("mobileMenu");
   const btn = document.querySelector(".hamburger");
   menu.classList.toggle("open");
   btn.classList.toggle("active");
-  btn.setAttribute("aria-expanded", menu.classList.contains("open"));
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.querySelector(".hamburger");
+  const links = document.querySelectorAll("#mobileMenu a");
+
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("open");
+      btn.classList.remove("active");
+      btn.setAttribute(
+    "aria-expanded",
+    menu.classList.contains("open")
+  );
+}
+</script>
+
+<!-- Signup notice logic -->
+<script>
 function openSignupNotice() {
-  signupModal.style.display = "flex";
+  document.getElementById("signupModal").style.display = "flex";
 }
 function closeSignupNotice() {
-  signupModal.style.display = "none";
+  document.getElementById("signupModal").style.display = "none";
 }
+</script>
+
+<!-- Language auto-detect (first visit only) -->
+<script>
+(function () {
+  if (localStorage.getItem("langSelected")) return;
+  const lang = navigator.language || "";
+  if (lang.startsWith("ja")) {
+    localStorage.setItem("langSelected", "ja");
+    location.href = "index-ja.html";
+  } else {
+    localStorage.setItem("langSelected", "en");
+  }
+})();
 </script>
 
 </body>

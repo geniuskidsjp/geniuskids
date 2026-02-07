@@ -27,11 +27,17 @@
     <span class="logo-text">Genius<span>Kids</span></span>
   </a>
 
-  <nav class="nav-links">
-    <a href="#">Subjects</a>
-    <a href="#">Grades</a>
-    <a href="#">Worksheets</a>
-    <a href="#">Games</a>
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    ☰
+  </button>
+
+  <!-- Main Navigation -->
+  <nav class="nav-links" id="mobileMenu">
+    <a href="#">📘 Subjects</a>
+    <a href="#">🎒 Grades</a>
+    <a href="#">✏️ Worksheets</a>
+    <a href="#">🎮 Games</a>
   </nav>
 
   <div class="lang-switch">
@@ -60,8 +66,8 @@
   </div>
 
   <div class="hero-box">
-  <img src="teacher.png" alt="English Teacher" class="teacher-img">
-</div>
+    <img src="teacher.png" alt="English Teacher" class="teacher-img">
+  </div>
 </section>
 
 <section class="paths">
@@ -112,6 +118,31 @@
 <footer>
   © 2026 GeniusKids.jp · All rights reserved
 </footer>
+
+<!-- ================= SCRIPTS (BEST PRACTICE LOCATION) ================= -->
+
+<!-- Hamburger menu logic -->
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.querySelector(".hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("active");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.querySelector(".hamburger");
+  const links = document.querySelectorAll("#mobileMenu a");
+
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("open");
+      btn.classList.remove("active");
+    });
+  });
+});
+</script>
 
 <!-- Language auto-detect (first visit only) -->
 <script>

@@ -6,11 +6,11 @@
   <title>GeniusKids｜日本の子どものための英語学習</title>
 
   <!-- SEO: hreflang -->
-  <link rel="alternate" hreflang="ja" href="https://geniuskids.jp/index-ja.html">
   <link rel="alternate" hreflang="en" href="https://geniuskids.jp/">
+  <link rel="alternate" hreflang="ja" href="https://geniuskids.jp/index-ja.html">
   <link rel="alternate" hreflang="x-default" href="https://geniuskids.jp/">
 
-  <!-- Fonts: English + Japanese -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
@@ -27,13 +27,11 @@
     <span class="logo-text">Genius<span>Kids</span></span>
   </a>
 
-  <!-- Hamburger Button (Mobile) -->
-  <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">
-    ☰
-  </button>
+  <!-- Hamburger Button -->
+  <button class="hamburger" aria-label="メニュー" aria-expanded="false" onclick="toggleMenu()">☰</button>
 
-  <!-- Main Navigation -->
-  <nav class="nav-links" id="mobileMenu">
+  <!-- Navigation -->
+  <nav class="nav-links" id="mobileMenu" aria-label="メインナビゲーション">
     <a href="#">📘 教科</a>
     <a href="#">🎒 学年</a>
     <a href="#">✏️ ワークシート</a>
@@ -41,13 +39,15 @@
   </nav>
 
   <div class="lang-switch">
-    <a href="index.html">EN</a> |
-    <a href="index-ja.html" class="active">日本語</a>
+  <span class="lang-icon" aria-hidden="true">🌐</span>
+  <a href="index.html" class="active">EN</a> |
+  <a href="index-ja.html">日本語</a>
   </div>
 
+
   <div class="auth-buttons">
-    <a href="#" class="btn-outline">ログイン</a>
-    <a href="#" class="btn-primary">新規登録</a>
+    <button class="btn-outline" onclick="openLoginModal()">ログイン</button>
+    <button class="btn-primary" onclick="openSignupNotice()">新規登録</button>
   </div>
 </header>
 
@@ -55,7 +55,7 @@
   <div class="hero-text">
     <h1>自信をもって英語を学ぼう</h1>
     <p>
-      日本の子ども向けに設計された英語学習<br>
+      日本の子どものための体系的な英語学習<br>
       対象年齢：4〜12歳・英検対応
     </p>
 
@@ -71,31 +71,31 @@
 </section>
 
 <section class="paths">
-  <h2>学習コースを見る</h2>
+  <h2>学習コース</h2>
 
   <div class="path-grid">
     <div class="path-card">
       <h3>アルファベット・フォニックス</h3>
-      <p>読みの基礎をしっかり身につけます。</p>
+      <p>読む力の基礎を身につけます。</p>
       <a href="#">ワークシートを見る</a>
     </div>
 
     <div class="path-card">
-      <h3>文字練習・なぞり書き</h3>
-      <p>書く力と運筆力を育てます。</p>
+      <h3>書き取り・なぞり書き</h3>
+      <p>正しい書き方と運筆力を育てます。</p>
       <a href="#">なぞり書きを始める</a>
     </div>
 
     <div class="path-card">
       <h3>文法・語彙</h3>
-      <p>英語のルールを段階的に学びます。</p>
+      <p>英語の仕組みを段階的に学習。</p>
       <a href="#">詳しく見る</a>
     </div>
 
     <div class="path-card">
       <h3>ゲームで楽しく学習</h3>
-      <p>遊びながら英語を定着させます。</p>
-      <a href="#">ゲームで学ぶ</a>
+      <p>遊びながらしっかり定着。</p>
+      <a href="#">ゲームをする</a>
     </div>
   </div>
 </section>
@@ -104,7 +104,8 @@
   <h2>学年を選ぶ</h2>
 
   <div class="grade-grid">
-    <div class="grade">年少〜年長</div>
+    <div class="grade">年少前</div>
+    <div class="grade">年少</div>
     <div class="grade">小学1年</div>
     <div class="grade">小学2年</div>
     <div class="grade">小学3年</div>
@@ -118,37 +119,84 @@
   © 2026 GeniusKids.jp · All rights reserved
 </footer>
 
-<!-- ================= SCRIPTS ================= -->
+<!-- SIGNUP MODAL -->
+<div id="signupModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3>新規登録について</h3>
+    <p>
+      ご登録・教材の利用をご希望の場合は、<br>
+      管理者までお問い合わせください。
+    </p>
+    <button class="btn-primary" onclick="closeSignupNotice()">OK</button>
+  </div>
+</div>
 
-<!-- Hamburger menu logic -->
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3>ログイン</h3>
+
+    <input id="loginUsername" type="text" placeholder="ユーザー名" autocomplete="username" />
+    <input id="loginPassword" type="password" placeholder="パスワード" autocomplete="current-password" />
+
+    <button class="btn-primary" onclick="loginUser()">ログイン</button>
+    <button class="btn-outline" onclick="closeLoginModal()">キャンセル</button>
+
+    <p id="loginError" style="color:red; font-size:14px; margin-top:10px;"></p>
+  </div>
+</div>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+const supabaseClient = window.supabase.createClient(
+  "https://njoqrdhstwhiwyjbwyoo.supabase.co",
+  "YOUR_PUBLIC_ANON_KEY"
+);
+
+function openLoginModal() {
+  document.getElementById("loginModal").style.display = "flex";
+}
+function closeLoginModal() {
+  document.getElementById("loginModal").style.display = "none";
+}
+
+async function loginUser() {
+  const username = loginUsername.value.trim();
+  const password = loginPassword.value;
+  loginError.textContent = "";
+
+  if (!username || !password) {
+    loginError.textContent = "ユーザー名とパスワードを入力してください。";
+    return;
+  }
+
+  const email = `${username}@geniuskids.local`;
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    loginError.textContent = "ユーザー名またはパスワードが正しくありません。";
+    return;
+  }
+
+  window.location.href = "resources.html";
+}
+
 function toggleMenu() {
   const menu = document.getElementById("mobileMenu");
   const btn = document.querySelector(".hamburger");
   menu.classList.toggle("open");
   btn.classList.toggle("active");
+  btn.setAttribute("aria-expanded", menu.classList.contains("open"));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const menu = document.getElementById("mobileMenu");
-  const btn = document.querySelector(".hamburger");
-  const links = document.querySelectorAll("#mobileMenu a");
-
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      menu.classList.remove("open");
-      btn.classList.remove("active");
-    });
-  });
-});
-</script>
-
-<!-- Language auto-detect (first visit only) -->
-<script>
-(function () {
-  if (localStorage.getItem("langSelected")) return;
-  localStorage.setItem("langSelected", "ja");
-})();
+function openSignupNotice() {
+  signupModal.style.display = "flex";
+}
+function closeSignupNotice() {
+  signupModal.style.display = "none";
+}
 </script>
 
 </body>

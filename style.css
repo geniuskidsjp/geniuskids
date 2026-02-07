@@ -82,7 +82,7 @@ a {
 
 .btn-outline {
   border: 2px solid #ffd200;
-  color: #ffd200;
+  color: #39005a;
   padding: 8px 16px;
   border-radius: 24px;
   display: inline-block;
@@ -128,7 +128,7 @@ a {
 
 /* ================= PATHS ================= */
 .paths {
-  background: #7e0404;
+  background: #000000;
   color: #ffffff;
   padding: 80px 40px;
 }

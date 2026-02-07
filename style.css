@@ -45,6 +45,31 @@ a {
   margin-left: 10px;
 }
 
+
+/* ================= LOGO ================= */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logo-img {
+  height: 36px;          /* adjust if needed */
+  width: auto;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo-text span {
+  color: #ffd200;
+}
+
+
 /* ================= BUTTONS ================= */
 .btn-primary {
   background: #ffd200;

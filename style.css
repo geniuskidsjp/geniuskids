@@ -8,7 +8,7 @@
 body {
   font-family: Arial, sans-serif;
   color: #222;
-  background: #ACDB39;
+  background: #ffffff;
   line-height: 1.5;
 }
 
@@ -19,7 +19,7 @@ a {
 
 /* ================= NAVBAR ================= */
 .navbar {
-  background: #000000;
+  background: #acdb39;
   color: #ffffff;
   display: flex;
   align-items: center;

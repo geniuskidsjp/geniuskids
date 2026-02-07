@@ -31,7 +31,7 @@
   <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 
   <!-- Main Navigation -->
-  <nav class="nav-links" id="mobileMenu">
+  <nav class="nav-links" id="mobileMenu" aria-label="Main navigation">
     <a href="#">📘 Subjects</a>
     <a href="#">🎒 Grades</a>
     <a href="#">✏️ Worksheets</a>
@@ -39,9 +39,11 @@
   </nav>
 
   <div class="lang-switch">
-    <a href="index.html" class="active">EN</a> |
-    <a href="index-ja.html">日本語</a>
+  <span class="lang-icon" aria-hidden="true">🌐</span>
+  <a href="index.html" class="active">EN</a> |
+  <a href="index-ja.html">日本語</a>
   </div>
+
 
   <div class="auth-buttons">
     <button class="btn-outline" onclick="openLoginModal()">Log In</button>
@@ -232,9 +234,11 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", () => {
       menu.classList.remove("open");
       btn.classList.remove("active");
-    });
-  });
-});
+      btn.setAttribute(
+    "aria-expanded",
+    menu.classList.contains("open")
+  );
+}
 </script>
 
 <!-- Signup notice logic -->

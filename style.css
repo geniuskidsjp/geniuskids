@@ -19,7 +19,7 @@ a {
 
 /* ================= NAVBAR ================= */
 .navbar {
-  background: #acdb39;
+  background: #3a1db9;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -128,7 +128,7 @@ a {
 
 /* ================= PATHS ================= */
 .paths {
-  background: #000000;
+  background: #7e0404;
   color: #ffffff;
   padding: 80px 40px;
 }
